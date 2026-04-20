@@ -1,57 +1,49 @@
 # KitsuneFuelSaver
 
-A QoL Harmony mod for 7 Days to Die. Auto-shuts off forges, campfires, and other fueled workstations the instant their craft queue is empty — no more fuel wasted while you're off doing literally anything else.
+You know that thing where you queue up 20 iron in the forge, go fight zombies for an hour, come back, and the forge is still burning through fuel like it forgot it was done three smelts ago?
+
+Yea. This fixes that.
+
+When the craft queue hits zero and there's nothing left to smelt, the fire goes out. Fuel already in the slot stays in the slot. Relight it next time. No more babysitting.
+
+There was a mod that did exactly this back in the A16-ish days and it was the first thing I installed every playthrough. TFP never shipped it. I don't know why. Maybe they think micromanaging fuel while six zombies chew your legs off is a design choice. So.
+
+Here it is. Again. For V2.6.14.
 
 ## Install
 
-1. Download the latest release zip.
-2. Extract so that `Mods/KitsuneFuelSaver/` lands inside your 7D2D install.
-3. Launch the game. You should see `[KitsuneFuelSaver] Loading Harmony patches` in the log.
+1. Grab `KitsuneFuelSaver-v1.0.0.zip` from the [Releases](https://github.com/Kitsune-Den/KitsuneFuelSaver/releases) page
+2. Extract so `Mods/KitsuneFuelSaver/` ends up in your 7D2D install
+3. Launch. You should see `[KitsuneFuelSaver] Loading Harmony patches` in the log
 
-Three files ship: `ModInfo.xml`, `KitsuneFuelSaver.dll`, and `0Harmony.dll` (V2.x no longer ships Harmony in `Managed/`, so the mod bundles its own copy).
+Three files in the mod folder: `ModInfo.xml`, `KitsuneFuelSaver.dll`, and `0Harmony.dll`. The Harmony DLL is bundled because V2.x stopped shipping it in `Managed/`.
 
-## What it does
+## What it actually does
 
-Hooks `TileEntityWorkstation.UpdateTick` with a Harmony postfix. After the game's normal tick:
+Harmony postfix on `TileEntityWorkstation.UpdateTick`. After the game's normal tick, it checks four things:
 
-- If the station is burning AND has the fuel module AND the craft queue is empty:
-  - For forge-style stations (material-input module), also require raw input slots to be empty so in-flight smelting still completes.
-  - Otherwise, flip `IsBurning` to `false`.
+- Is the station burning?
+- Does it have the fuel module?
+- Is the craft queue empty?
+- For forges: is all the raw material done smelting?
 
-Non-fueled stations (chem bench, workbench, cement mixer) are untouched — the patch short-circuits for them.
+Yes to all four, it flips `IsBurning` to false. That's the whole mod. About 40 lines of C#.
 
-Fuel already in the fuel slots is preserved. Just light it again next time.
+Non-fueled stations (chem bench, workbench, cement mixer) don't have a fuel module, so the patch short-circuits on them. No weird side effects, no state corruption, it just doesn't do anything to workstations that wouldn't benefit.
 
-## Repo layout
+## Build it yourself
 
-```
-/                        <- dev root
-  KitsuneFuelSaver.sln / .csproj
-  Harmony/KitsuneFuelSaver.cs    <- source
-  libs/                         <- vendored 7D2D DLLs (compile-time only)
-  KitsuneFuelSaver/              <- THE MOD FOLDER (drop this into 7D2D/Mods/)
-    ModInfo.xml
-    KitsuneFuelSaver.dll         <- produced by build
-    0Harmony.dll                <- copied in by build
-```
-
-The build outputs straight into `KitsuneFuelSaver/`, so after `dotnet build -c Release` that folder is the shippable mod.
-
-## Build from source
-
-Requires .NET SDK 8+. The build depends on a few 7 Days to Die DLLs that aren't redistributable, so they're not in the repo — you need to provide them yourself from your local install:
+You need .NET SDK 8+ and a copy of the game. A few of the reference DLLs aren't redistributable so they live outside the repo. Pull these out of your `7DaysToDie_Data/Managed/` folder and drop them in `libs/`:
 
 ```
-libs/
-  0Harmony.dll                    (from another Harmony-using 7D2D mod, or download HarmonyX)
-  Assembly-CSharp.dll
-  Assembly-CSharp-firstpass.dll
-  LogLibrary.dll
-  UnityEngine.dll
-  UnityEngine.CoreModule.dll
+Assembly-CSharp.dll
+Assembly-CSharp-firstpass.dll
+LogLibrary.dll
+UnityEngine.dll
+UnityEngine.CoreModule.dll
 ```
 
-Copy those from `<7D2D install>/7DaysToDie_Data/Managed/`. Note: V2.x no longer ships `0Harmony.dll` there — any Harmony-based 7D2D mod already installed on your system will have a copy, or grab the latest HarmonyX release for .NET Framework 4.8.
+You'll also need `0Harmony.dll`. V2.x doesn't ship it anymore, so either grab a copy from any Harmony-based 7D2D mod you already have installed, or download the latest HarmonyX release for .NET Framework 4.8.
 
 Then:
 
@@ -59,14 +51,16 @@ Then:
 dotnet build -c Release
 ```
 
-Or run `01-CreateRelease.bat`.
+The build outputs straight into the `KitsuneFuelSaver/` folder. That folder is the shippable mod, ready to drop into `Mods/`.
 
 ## Compatibility
 
-Built and runtime-verified against 7 Days to Die **V2.6.14**. Decompile confirms the `TileEntityWorkstation` shape used; single-player tested. The `setModified()` call inside `IsBurning`'s setter handles dedi state sync.
+Built and tested against V2.6.14 on single-player. The state flip goes through `IsBurning`'s setter which already calls `setModified()`, so dedi should sync normally. If you run into a case where it doesn't, open an issue.
 
-No load-order requirements — bundles its own Harmony, patches a vanilla class as a postfix, coexists with other Harmony mods.
+No load order needed. It ships its own Harmony, patches a vanilla class as a postfix, and coexists with other Harmony mods.
+
+One caveat: if you're running a big overhaul (Darkness Falls, Undead Legacy, etc.) that subclasses `TileEntityWorkstation` instead of using it directly, the patch may not fire on their custom forges. It won't break anything, just won't do its job on those specific stations. Easy fix if that comes up.
 
 ## License
 
-MIT. See [LICENSE](LICENSE).
+MIT. Do whatever.
