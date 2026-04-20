@@ -18,6 +18,8 @@ Here it is. Again. For V2.6.14.
 
 Three files in the mod folder: `ModInfo.xml`, `KitsuneFuelSaver.dll`, and `0Harmony.dll`. The Harmony DLL is bundled because V2.x stopped shipping it in `Managed/`.
 
+**Server-side only.** `TileEntityWorkstation.UpdateTick` runs on the host (your machine in single-player, the host in listen/P2P, the dedi box for dedicated servers). Clients see the effect through the normal state-sync path, so joining players don't need the mod installed. Dedi admins can drop it in and nobody else has to do anything.
+
 ## What it actually does
 
 Harmony postfix on `TileEntityWorkstation.UpdateTick`. After the game's normal tick, it checks four things:
@@ -55,7 +57,7 @@ The build outputs straight into the `KitsuneFuelSaver/` folder. That folder is t
 
 ## Compatibility
 
-Built and tested against V2.6.14 on single-player. The state flip goes through `IsBurning`'s setter which already calls `setModified()`, so dedi should sync normally. If you run into a case where it doesn't, open an issue.
+Built and tested against V2.6.14 on single-player. The state flip goes through `IsBurning`'s setter which already calls `setModified()`, so dedi sync should work through the normal vanilla path. If you hit a case where it doesn't, open an issue.
 
 No load order needed. It ships its own Harmony, patches a vanilla class as a postfix, and coexists with other Harmony mods.
 
