@@ -1,0 +1,12 @@
+build/
+bin/
+obj/
+dist/
+libs/
+*.user
+.vs/
+*.suo
+
+# Mod folder: only source-control ModInfo.xml; built DLLs are build output
+/KitsuneFuelSaver/*.dll
+/KitsuneFuelSaver/*.pdb

@@ -1,0 +1,9 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<xml>
+	<Name value="KitsuneFuelSaver" />
+	<DisplayName value="Kitsune Fuel Saver" />
+	<Description value="Auto-shuts off forges, campfires, and other fueled workstations when the craft queue is empty and nothing is smelting. Stops wasting fuel while you micromanage." />
+	<Website value="https://github.com/Kitsune-Den/KitsuneFuelSaver" />
+	<Author value="Kitsune-Den" />
+	<Version value="1.0.0" />
+</xml>
