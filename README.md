@@ -4,6 +4,7 @@
 
 [![Download on Nexus Mods](https://img.shields.io/badge/Download-Nexus_Mods-da8e35?style=flat&logo=nexusmods&logoColor=white)](https://www.nexusmods.com/7daystodie/mods/10231)
 [![Latest Release](https://img.shields.io/github/v/release/Kitsune-Den/KitsuneFuelSaver?style=flat&color=teal)](https://github.com/Kitsune-Den/KitsuneFuelSaver/releases)
+[![Discord](https://img.shields.io/badge/Discord-Kitsune_Den-5865F2?style=flat&logo=discord&logoColor=white)](https://kitsuneden.net/discord)
 [![Twitter](https://img.shields.io/badge/Twitter-@AdaInTheLab-1DA1F2?style=flat&logo=x&logoColor=white)](https://x.com/AdaInTheLab)
 [![License](https://img.shields.io/github/license/Kitsune-Den/KitsuneFuelSaver?style=flat)](LICENSE)
 
