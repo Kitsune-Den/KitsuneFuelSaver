@@ -1,5 +1,12 @@
 # KitsuneFuelSaver
 
+![KitsuneFuelSaver banner](assets/KitsuneFuelSaver-banner.jpg)
+
+[![Download on Nexus Mods](https://img.shields.io/badge/Download-Nexus_Mods-da8e35?style=flat&logo=nexusmods&logoColor=white)](https://www.nexusmods.com/7daystodie/mods/10231)
+[![Latest Release](https://img.shields.io/github/v/release/Kitsune-Den/KitsuneFuelSaver?style=flat&color=teal)](https://github.com/Kitsune-Den/KitsuneFuelSaver/releases)
+[![Twitter](https://img.shields.io/badge/Twitter-@AdaInTheLab-1DA1F2?style=flat&logo=x&logoColor=white)](https://x.com/AdaInTheLab)
+[![License](https://img.shields.io/github/license/Kitsune-Den/KitsuneFuelSaver?style=flat)](LICENSE)
+
 You know that thing where you queue up 20 iron in the forge, go fight zombies for an hour, come back, and the forge is still burning through fuel like it forgot it was done three smelts ago?
 
 Yea. This fixes that.
