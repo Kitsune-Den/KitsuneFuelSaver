@@ -1,5 +1,12 @@
 # KitsuneFuelSaver
 
+🦊 **Part of the [Kitsune Systems Collection](https://github.com/Kitsune-Den)** —
+[KitsunePvPExtended](https://github.com/Kitsune-Den/KitsunePvPExtended) ·
+[KitsuneTrapXP](https://github.com/Kitsune-Den/KitsuneTrapXP) ·
+[KitsuneZombieReach](https://github.com/Kitsune-Den/KitsuneZombieReach) ·
+[KitsuneKitchen7D](https://github.com/Kitsune-Den/KitsuneKitchen7D) ·
+[KitsuneFoxacary](https://github.com/Kitsune-Den/KitsuneFoxacary)
+
 ![KitsuneFuelSaver banner](assets/KitsuneFuelSaver-banner.jpg)
 
 [![Download on Nexus Mods](https://img.shields.io/badge/Download-Nexus_Mods-da8e35?style=flat&logo=nexusmods&logoColor=white)](https://www.nexusmods.com/7daystodie/mods/10231)
