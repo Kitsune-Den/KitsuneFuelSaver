@@ -1,6 +1,6 @@
 # KitsuneFuelSaver
 
-🦊 **Part of the [Kitsune Systems Collection](https://github.com/Kitsune-Den)** —
+🦊 **Part of the [Kitsune Systems Collection](https://github.com/Kitsune-Den)** ~
 [KitsunePvPExtended](https://github.com/Kitsune-Den/KitsunePvPExtended) ·
 [KitsuneTrapXP](https://github.com/Kitsune-Den/KitsuneTrapXP) ·
 [KitsuneZombieReach](https://github.com/Kitsune-Den/KitsuneZombieReach) ·
