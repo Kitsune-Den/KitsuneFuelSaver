@@ -27,7 +27,7 @@ Here it is. Again. For V2.6.14.
 
 ## Install
 
-1. Grab `KitsuneFuelSaver-v1.0.0.zip` from the [Releases](https://github.com/Kitsune-Den/KitsuneFuelSaver/releases) page
+1. Grab `KitsuneFuelSaver-v1.0.1.zip` from the [Releases](https://github.com/Kitsune-Den/KitsuneFuelSaver/releases) page
 2. Extract so `Mods/KitsuneFuelSaver/` ends up in your 7D2D install
 3. Launch. You should see `[KitsuneFuelSaver] Loading Harmony patches` in the log
 
