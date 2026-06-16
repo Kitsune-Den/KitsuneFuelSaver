@@ -23,15 +23,15 @@ When the craft queue hits zero and there's nothing left to smelt, the fire goes 
 
 There was a mod that did exactly this back in the A16-ish days and it was the first thing I installed every playthrough. TFP never shipped it. I don't know why. Maybe they think micromanaging fuel while six zombies chew your legs off is a design choice. So.
 
-Here it is. Again. For V2.6.14.
+Here it is. Again. For V3.0.
 
 ## Install
 
-1. Grab `KitsuneFuelSaver-v1.0.0.zip` from the [Releases](https://github.com/Kitsune-Den/KitsuneFuelSaver/releases) page
+1. Grab `KitsuneFuelSaver-v1.1.0.zip` from the [Releases](https://github.com/Kitsune-Den/KitsuneFuelSaver/releases) page
 2. Extract so `Mods/KitsuneFuelSaver/` ends up in your 7D2D install
 3. Launch. You should see `[KitsuneFuelSaver] Loading Harmony patches` in the log
 
-Three files in the mod folder: `ModInfo.xml`, `KitsuneFuelSaver.dll`, and `0Harmony.dll`. The Harmony DLL is bundled because V2.x stopped shipping it in `Managed/`.
+Three files in the mod folder: `ModInfo.xml`, `KitsuneFuelSaver.dll`, and `0Harmony.dll`. The Harmony DLL is bundled for self-containment. V3.0 ships its own copy via the `0_TFP_Harmony` core mod, and the bundled one is byte-identical to it, so there's no version conflict either way.
 
 **Server-side only.** `TileEntityWorkstation.UpdateTick` runs on the host (your machine in single-player, the host in listen/P2P, the dedi box for dedicated servers). Clients see the effect through the normal state-sync path, so joining players don't need the mod installed. Dedi admins can drop it in and nobody else has to do anything.
 
@@ -60,7 +60,7 @@ UnityEngine.dll
 UnityEngine.CoreModule.dll
 ```
 
-You'll also need `0Harmony.dll`. V2.x doesn't ship it anymore, so either grab a copy from any Harmony-based 7D2D mod you already have installed, or download the latest HarmonyX release for .NET Framework 4.8.
+You'll also need `0Harmony.dll`. Grab it from `Mods/0_TFP_Harmony/0Harmony.dll` in your game install (V3.0 ships it there), from any other Harmony-based 7D2D mod, or download the latest HarmonyX release for .NET Framework 4.8.
 
 Then:
 
@@ -72,7 +72,7 @@ The build outputs straight into the `KitsuneFuelSaver/` folder. That folder is t
 
 ## Compatibility
 
-Built and tested against V2.6.14 on single-player. The state flip goes through `IsBurning`'s setter which already calls `setModified()`, so dedi sync should work through the normal vanilla path. If you hit a case where it doesn't, open an issue.
+Built against V3.0 "Dead Hot Summer." Recompiled against the 3.0 game assemblies, and the patched members plus the `TileEntityWorkstation.Module` indices (`Fuel = 3`, `Material_Input = 4`) are verified present and unchanged in 3.0. The state flip goes through `IsBurning`'s setter which already calls `setModified()`, so dedi sync should work through the normal vanilla path. If you hit a case where it doesn't, open an issue.
 
 No load order needed. It ships its own Harmony, patches a vanilla class as a postfix, and coexists with other Harmony mods.
 
